@@ -1,0 +1,23 @@
+<html>
+    <body>
+    <div>
+        <form method="post">
+            <input type = "text" name = "color" placeholder="Цвет машины">
+            <input type = "number" name = "price" placeholder="Цена">
+            <button type = "submit">Добавить</button>
+        </form>
+    </div>
+    <div>Cписок машин:</div>
+    <form method="post" action="filter">
+        <input type="text" name="color" placeholder="Цвет машины">
+        <button type="submit">Найти</button>
+    </form>
+    {{#cars}}
+        <div>
+            <b>{{id}}</b>
+            <span>{{color}}</span>
+            <i>{{price}}</i>
+        </div>
+    {{/cars}}
+    </body>
+</html>
