@@ -1,5 +1,12 @@
 package com.jizapika.carShop.domain;
 
-public enum Role {
+import org.springframework.security.core.GrantedAuthority;
+
+public enum Role implements GrantedAuthority {
     Seller;
+
+    @Override
+    public String getAuthority() {
+        return name();
+    }
 }
