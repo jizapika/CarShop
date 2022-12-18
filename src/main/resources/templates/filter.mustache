@@ -1,8 +1,10 @@
 <html>
 <body>
+    <a href="/main">Main page</a>
     <div>Cписок машин:</div>
     <form method="post" action="filter">
         <input type="text" name="color" placeholder="Цвет машины">
+        <input type="hidden" name="_csrf" value="{{_csrf.token}}">
         <button type="submit">Найти</button>
     </form>
     {{#cars}}

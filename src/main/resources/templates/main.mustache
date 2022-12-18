@@ -1,15 +1,23 @@
 <html>
     <body>
     <div>
+        <form action="/logout" method="post">
+            <input type="hidden" name="_csrf" value="{{_csrf.token}}">
+            <input type="submit" value="Sign Out"/>
+        </form>
+    </div>
+    <div>
         <form method="post">
             <input type = "text" name = "color" placeholder="Цвет машины">
             <input type = "number" name = "price" placeholder="Цена">
+            <input type="hidden" name="_csrf" value="{{_csrf.token}}">
             <button type = "submit">Добавить</button>
         </form>
     </div>
     <div>Cписок машин:</div>
     <form method="post" action="filter">
         <input type="text" name="color" placeholder="Цвет машины">
+        <input type="hidden" name="_csrf" value="{{_csrf.token}}">
         <button type="submit">Найти</button>
     </form>
     {{#cars}}

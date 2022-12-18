@@ -3,7 +3,7 @@ package com.jizapika.carShop.domain;
 import javax.persistence.*;
 
 @Entity
-@Table(name="cars")
+@Table(name = "cars")
 public class Car {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

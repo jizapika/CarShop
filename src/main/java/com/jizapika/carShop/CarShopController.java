@@ -15,20 +15,19 @@ public class CarShopController {
     @Autowired
     private CarRepo carRepo;
 
-    @GetMapping("/carShop")
-    public String carShop(@RequestParam(name="name", required=false, defaultValue="World") String name, Map<String, Object> model) {
-        model.put("name", name);
-        return "carShop";
+    @GetMapping("/")
+    public String carShop(Map<String, Object> model) {
+        return "greeting";
     }
 
-    @GetMapping
+    @GetMapping("/main")
     public String main(Map<String, Object> model) {
         Iterable<Car> cars = carRepo.findAll();
         model.put("cars", cars);
         return "main";
     }
 
-    @PostMapping
+    @PostMapping("/main")
     public String add(@RequestParam String color, @RequestParam Integer price, Map<String, Object> model) {
         Car car = new Car(color, price);
         carRepo.save(car);
@@ -37,7 +36,7 @@ public class CarShopController {
         return "main";
     }
 
-    @PostMapping("filter")
+    @PostMapping("/filter")
     public String filter(@RequestParam String color, Map<String, Object> model) {
         Iterable<Car> cars;
 
