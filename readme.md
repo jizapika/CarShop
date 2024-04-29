@@ -10,6 +10,6 @@ The car can be found by its color using the search engine on the main page. \
 Car format: \
 seller: id color price
 
-Run: docker-compose up
-docker-port: 3000
+Run: docker-compose up \
+docker-port: 3000 \
 app-port: 8080
