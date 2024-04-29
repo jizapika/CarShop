@@ -2,13 +2,13 @@
 --changeset jizapika:1
 create table cars (
     id serial primary key,
-    color string,
+    color varchar(32),
     price int
 );
 
 create table sellers (
     id bigserial primary key,
-    username string,
-    password string,
+    username varchar(128),
+    password varchar(128),
     active bool
 );
