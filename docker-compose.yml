@@ -9,6 +9,11 @@ services:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
       - POSTGRES_DB=car-shop
+    healthcheck:
+      test: pg_isready -U postgres -d car-shop
+      interval: 10s
+      timeout: 30s
+      retries: 10
     ports:
       - "5432:5432"
     networks:
@@ -16,7 +21,7 @@ services:
   cs-server:
     container_name: cs-server
     build:
-      context: .
+      context: ..
       dockerfile: Dockerfile
     image: cs-server:0.0.1
     ports:
@@ -26,23 +31,27 @@ services:
       - SPRING_DATASOURCE_USERNAME=postgres
       - SPRING_DATASOURCE_PASSWORD=postgres
     depends_on:
-      - postgres
+      postgres:
+        condition: service_healthy
     networks:
       - backend
   liquibase-migrations:
+    container_name: liquibase
+    build:
+      dockerfile: Dockerfile
     image: liquibase/liquibase:4.18
     depends_on:
-      - cs-server
-    command: >
-      bash -c "sleep 30 && liquibase
-      --hub-mode=off
-      --changelog-file=master.xml
-      --driver=org.postgresql.Driver
-      --url=jdbc:postgresql://postgres:5432/car-shop
-      --username=postgres
-      --password=postgres
-      --searchPath=/liquibase/changelog
-      update"
+      postgres:
+        condition: service_healthy
+    command:
+      - --hub-mode=off
+      - --changelog-file=master.xml
+      - --driver=org.postgresql.Driver
+      - --url=jdbc:postgresql://postgres:5432/car-shop
+      - --username=postgres
+      - --password=postgres
+      - --searchPath=/liquibase/changelog
+      - update
     volumes:
       - ./migrations:/liquibase/changelog
     networks:

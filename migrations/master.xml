@@ -7,5 +7,5 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd
         http://www.liquibase.org/xml/ns/dbchangelog-ext https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
 
-    <include file="2024-04-29-CRS-1_create_car_and_seller_tables.sql"/>
+    <include file="scripts/2024-04-29-CRS-1_create_car_and_seller_tables.sql"/>
 </databaseChangeLog>

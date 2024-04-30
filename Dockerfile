@@ -15,4 +15,4 @@ RUN mvn clean package
 
 USER 1002
 
-ENTRYPOINT ["bash", "-c", "sleep 30 && java -jar target/carShop-0.0.1-SNAPSHOT.jar"]
+ENTRYPOINT ["java", "-jar", "target/carShop-0.0.1-SNAPSHOT.jar"]
