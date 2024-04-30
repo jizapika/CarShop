@@ -21,7 +21,6 @@ services:
   cs-server:
     container_name: cs-server
     build:
-      context: ..
       dockerfile: Dockerfile
     image: cs-server:0.0.1
     ports:
